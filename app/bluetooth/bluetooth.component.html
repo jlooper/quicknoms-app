@@ -1,0 +1,30 @@
+<ActionBar title="Local Temperature" class="action-bar">
+    <ActionItem (tap)="showInfo()" ios.position="right">
+        <Button [text]="'fa-question' | fonticon" class="fa brown"></Button>
+    </ActionItem>
+</ActionBar>
+    
+    <ScrollView class="orange">
+
+        <StackLayout>
+            <ng-template #elseBlock>
+                <Label textWrap="true" class="banner" text="Match your local temperature to a recipe using an Estimote beacon"></Label>
+            </ng-template>
+            
+            <Gradient *ngIf="temperature !== undefined; else elseBlock" class="gradientCard" direction="to bottom" [colors]="gradient">
+                <Label class="temp" [text]="temperature + '°'"></Label>
+                <Label [text]="recommendation" textWrap="true"></Label>
+            </Gradient>
+
+            <WrapLayout horizontalAlignment="center">      
+                <StackLayout class="card" width="45%" *ngFor="let recipe of recipes">
+                    <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
+                        <Image stretch="aspectFill"  [src]="recipe.Image" height="75%" width="100%"></Image>            
+                        <Label class="name" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>
+                    </StackLayout>
+                </StackLayout>          
+            </WrapLayout> 
+
+            </StackLayout>
+        
+    </ScrollView>
