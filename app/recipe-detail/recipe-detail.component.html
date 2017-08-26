@@ -1,0 +1,21 @@
+<ActionBar title="{{name}}" class="action-bar"></ActionBar>
+<StackLayout>
+    <Image [src]="image" height="25%" stretch="aspectFill"></Image>            
+        <StackLayout class="innerCard">
+            <Label horizontalAlignment="left" class="caption name" textWrap="true" [text]="notes"></Label>   
+            <SegmentedBar class="bar" borderColor="#8AC215" selectedBackgroundColor="#8AC215" #sb [items]="recipeSteps" selectedIndex="0" (selectedIndexChange)="changeTab(sb.selectedIndex)"></SegmentedBar>
+            <StackLayout verticalAlignment="top">
+                <ScrollView height="75%" verticalAlignment="top">
+                    <Label style="padding: 10" verticalAlignment="top" horizontalAlignment="left" textWrap="true">
+                        <FormattedString>
+                            <Span class="name" [text]="procedure"></Span>
+                        </FormattedString>
+                    </Label>
+                </ScrollView>
+                <StackLayout height="25%" verticalAlignment="center">
+                    <Button [text]="'fa-bullhorn' | fonticon" [class]="isSpeaking ? 'green pulse fa fa-bullhorn btnSpeak' : 'orange fa fa-bullhorn btnSpeak'"
+                        (tap)=speak(procedure)></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+</StackLayout>

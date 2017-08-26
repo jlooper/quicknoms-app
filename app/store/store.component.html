@@ -1,0 +1,28 @@
+<ActionBar title="Recipe Discovery" class="action-bar"></ActionBar>
+
+<ScrollView class="green">
+
+   <StackLayout>
+
+    <Label class="banner" textWrap="true" text="Take a photo of an ingredient, and we'll match it with a recipe!"></Label>
+
+    <GridLayout cols="*" rows="*,*">
+       
+        <Button row="0" [text]="'fa-camera' | fonticon" class="fa btn cameraButton" (tap)="takePhoto()"></Button>
+         
+    </GridLayout>
+
+   <WrapLayout horizontalAlignment="center">      
+        <StackLayout class="card" width="45%" *ngFor="let recipe of recipes">
+            <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
+                <Image stretch="aspectFill"  [src]="recipe.Image" height="75%" width="100%"></Image>            
+                <Label class="name" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>
+            </StackLayout>
+        </StackLayout>          
+    </WrapLayout> 
+       
+        
+   </StackLayout>
+    
+    
+</ScrollView>

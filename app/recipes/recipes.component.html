@@ -1,0 +1,13 @@
+<ActionBar class="action-bar">
+    <Label [text]="title"></Label>
+</ActionBar>
+<ScrollView class="green">
+    <WrapLayout horizontalAlignment="center">      
+        <StackLayout class="card" width="45%" *ngFor="let recipe of (recipes$ | async)">
+            <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
+                <Image stretch="aspectFill"  [src]="recipe.Image" height="75%" width="100%"></Image>            
+                <Label class="name" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>
+            </StackLayout>
+        </StackLayout>           
+    </WrapLayout> 
+</ScrollView>

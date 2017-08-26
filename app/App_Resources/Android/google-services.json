@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "631928188702",
+    "firebase_url": "https://quicknoms-91e39.firebaseio.com",
+    "project_id": "quicknoms-91e39",
+    "storage_bucket": "quicknoms-91e39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631928188702:android:af84327b36cceb5b",
+        "android_client_info": {
+          "package_name": "com.ladeezfirstmedia.quicknoms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631928188702-2h78ca76f1gi7gr7u9vk9hb7pkpjqmn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLfHiBGR8USGGNKDbVbQZf54Z5_AFoAFQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
