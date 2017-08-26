@@ -8,11 +8,6 @@ import { ImageSource } from 'image-source';
 import { LoadingIndicator } from "nativescript-loading-indicator";
 import { Algolia } from "nativescript-algolia";
 
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/map";
-import "rxjs/add/observable/throw";
-import "rxjs/add/operator/catch";
-
 const http = require("http");
 const enums = require("ui/enums");
 
@@ -120,9 +115,9 @@ export class StoreComponent implements OnInit {
             this.loader.show({ message: 'Looking for recipes using ' + ingredient});
             
             this.recipes = [];
-            this.index.search(ingredient, (results, errors) => {
+            this.index.search(ingredient.toString(), (results, errors) => {
                 
-                if(results.hits.length>1){
+                if(results && results.hits.length>1){
                     for (let id in results.hits) {
                      {
                         let result = (<any>Object).assign({id: results.hits[id].objectID, Name: results.hits[id].Name, Image: results.hits[id].Image});
@@ -137,7 +132,7 @@ export class StoreComponent implements OnInit {
                 }
                 else{
                     this.loader.hide();
-                    alert("sorry, I couldn't find any recipe with " + ingredient + "as an ingredient.")
+                    alert("sorry, I couldn't find any recipe with " + ingredient + " as an ingredient.")
                 }
                     
                 })           

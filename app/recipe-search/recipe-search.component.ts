@@ -30,7 +30,7 @@ export class RecipeSearchComponent implements OnInit {
         if (e && e.object) {
             this.term = e.object.text;
             this.index.search(this.term, (results, errors) => {
-                if(results.hits.length>1){
+                if(results && results.hits.length>1){
                     for (let id in results.hits) {
                         let result = (<any>Object).assign({id: results.hits[id].objectID, Name: results.hits[id].Name, Image: results.hits[id].Image});
                             this.ngZone.run(() => {
@@ -41,14 +41,14 @@ export class RecipeSearchComponent implements OnInit {
                 }
                 else {
                     this.loader.hide();
-                    alert("none!")
+                    alert("Sorry, I couldn't find a corresponding recipe!")
                 }
             })
             
             
             }
             else {
-                alert("Sorry, no recipes found!");
+                alert("Sorry, I couldn't find a corresponding recipe!")
                 this.loader.hide();
             }
             
