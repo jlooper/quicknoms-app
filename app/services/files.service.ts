@@ -1,8 +1,12 @@
-import {Injectable, Inject} from '@angular/core';
+import {Injectable, Inject, NgZone} from '@angular/core';
 import * as fs from 'file-system';
 
 @Injectable()
-export class UtilsService {
+export class FilesService {
+  constructor(
+    private ngZone: NgZone,
+  ) { }
+
 
   public getFilename(path: string) {
     let parts = path.split('/');
@@ -12,4 +16,5 @@ export class UtilsService {
   public documentsPath(filename: string) {
     return `${fs.knownFolders.documents().path}/${filename}`;
   }
+
 }

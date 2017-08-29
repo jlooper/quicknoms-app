@@ -1,14 +1,15 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs/Observable";
-import { AuthService } from "../services/auth.service";
+
+import { AuthService, MLService } from "../services";
+
 import * as camera from "nativescript-camera";
 import { ImageAsset } from "image-asset";
 import { ImageSource } from 'image-source';
+
 import { LoadingIndicator } from "nativescript-loading-indicator";
 import { Algolia } from "nativescript-algolia";
 
-const http = require("http");
 const enums = require("ui/enums");
 
 @Component({
@@ -22,8 +23,11 @@ export class StoreComponent implements OnInit {
     recipes: Array<any> = [];
     ingredient: string;
     
-    constructor(private router: Router, private ngZone: NgZone) 
-                {}
+    constructor(private router: Router, 
+        private ngZone: NgZone, 
+        private mlService: MLService,
+        ) 
+    {}
 
     loader = new LoadingIndicator();
     client = new Algolia(AuthService.algoliaAppId, AuthService.algoliaKey);
@@ -45,14 +49,14 @@ export class StoreComponent implements OnInit {
 
         camera.takePicture(options)
         .then((imageAsset: ImageAsset) => {
-            this.updateItemPic(imageAsset);
+            this.processItemPic(imageAsset);
         }).catch(err => {
             console.log(err.message);
         });
     
     }
     
-    updateItemPic(asset: ImageAsset) {
+    processItemPic(asset: ImageAsset) {
         const imageSource = new ImageSource();
         imageSource.fromAsset(asset)
         
@@ -60,53 +64,19 @@ export class StoreComponent implements OnInit {
             this.itemPic = image;
             //send to Google for analysis //png on ios
             const imageAsBase64 = image.toBase64String(enums.ImageFormat.png);
-            try {
+           
                 this.loader.show({ message: 'Analyzing image...' });
             
-                        http.request({
-                            url: "https://vision.googleapis.com/v1/images:annotate?key="+AuthService.googleKey,
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Content-Length": imageAsBase64.length,
-                            },
-                            content: JSON.stringify({
-                                "requests": [{
-                                        "image": {
-                                            "content": imageAsBase64 
-                                        },
-                                        "features" : [
-                                        {
-                                            "type":"LABEL_DETECTION",
-                                            "maxResults":1
-                                        }
-                                    ]                      
-                                }]
-                            })
-                        }).then( response => {                        
-                            try {
-                                let result = response.content.toJSON();
-                                this.ingredient = result.responses[0].labelAnnotations.map( mc => mc.description );
-                                
-                                
+                    this.mlService.queryGoogleVisionAPI(imageAsBase64)
+                    .then(res => {
+                        let result = res.content.toJSON();
+                                this.ingredient = result.responses[0].labelAnnotations.map( mc => mc.description );                                                               
                                 this.ngZone.run(() => {
                                     this.loader.hide();
                                     this.searchRecipes(this.ingredient)
                                 })
-                            }
-                            catch (e) {
-                                console.log('error parsing response: ' + e);
-                            }
-                        }, e => {
-                            this.loader.hide();
-                            console.log("Error occurred " + e);
                         });
-                    }
-                    catch (e) {
-                        this.loader.hide();
-                        console.log('error in request: ' + e);
-                    }
-                });
+                })               
         }
 
         searchRecipes(ingredient) {
@@ -135,7 +105,7 @@ export class StoreComponent implements OnInit {
                     alert("sorry, I couldn't find any recipe with " + ingredient + " as an ingredient.")
                 }
                     
-                })           
+           })           
 
         }
        

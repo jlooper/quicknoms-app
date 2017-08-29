@@ -125,6 +125,10 @@ ActionBar {
   font-family: FontAwesome, fontawesome-webfont;
 }
 
+.ion {
+  font-family: Ionicons, ionicons;
+}
+
 /*fab*/
 .fab-button {
     height: 40;

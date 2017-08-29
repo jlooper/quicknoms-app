@@ -4,8 +4,9 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
 import { RecipesService } from "./services/recipes.service";
-import { UtilsService } from "./services/utils.service";
+import { FilesService } from "./services/files.service";
 import { AuthService } from "./services/auth.service";
+import { MLService } from "./services/ml.service";
 
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
@@ -42,7 +43,8 @@ firebase.init({
         NativeScriptModule,
         AppRoutingModule,
         TNSFontIconModule.forRoot({
-            'fa': 'fonts/font-awesome.css'
+            'fa': 'fonts/font-awesome.css',
+            'ion': 'fonts/ionicons.css'
         })
     ],
     declarations: [
@@ -57,8 +59,9 @@ firebase.init({
     ],
     providers: [
         RecipesService,
-        UtilsService,
-        AuthService   
+        FilesService,
+        AuthService,
+        MLService   
     ],
     schemas: [
         NO_ERRORS_SCHEMA

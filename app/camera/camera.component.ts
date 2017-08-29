@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { RecipesService } from "../services/recipes.service";
-import { AuthService } from "../services/auth.service";
+
+import { RecipesService, MLService, AuthService } from "../services";
+
 import * as camera from "nativescript-camera";
 import { ImageAsset } from "image-asset";
 import { ImageSource } from 'image-source';
+
 import { LoadingIndicator } from "nativescript-loading-indicator";
 
 const http = require("http");
@@ -21,7 +23,8 @@ export class CameraComponent implements OnInit {
     public recipePic: ImageSource;
     
     constructor(private recipeService: RecipesService,
-                private router: Router) 
+                private router: Router,
+                private mlService: MLService) 
                 {}
 
     loader = new LoadingIndicator();
@@ -41,14 +44,14 @@ export class CameraComponent implements OnInit {
 
         camera.takePicture(options)
         .then((imageAsset: ImageAsset) => {
-            this.updateRecipePic(imageAsset);
+            this.processRecipePic(imageAsset);
         }).catch(err => {
             console.log(err.message);
         });
     
     }
     
-    updateRecipePic(asset: ImageAsset) {
+    processRecipePic(asset: ImageAsset) {
         const imageSource = new ImageSource();
         imageSource.fromAsset(asset)
         
@@ -56,33 +59,15 @@ export class CameraComponent implements OnInit {
             this.recipePic = image;
             //send to clarif.ai for analysis //png on ios
             const imageAsBase64 = image.toBase64String(enums.ImageFormat.png);
-            console.log('picture b ' + (typeof imageAsBase64));
-            console.log('making request ' + imageAsBase64.length);
             try {
                 //this.loader.show({ message: 'Analyzing image...' });
-            
-                        http.request({
-                            url: AuthService.clarifaiUrl,
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Authorization": "Key " + AuthService.clarifaiKey,
-                            },
-                            content: JSON.stringify({
-                                "inputs": [{
-                                    "data": {
-                                        "image": {
-                                            "base64": imageAsBase64 //"https://samples.clarifai.com/metro-north.jpg"
-                                        }
-                                    }
-                                }]
-                            })
-                        }).then( response => {
+                this.mlService.queryClarifaiAPI(imageAsBase64)
+                    .then(res => {
                             console.log('response!!!!');
                             //this.loader.hide();
-                            console.log(response.content.toString());
+                            console.log(res.content.toString());
                             try {
-                                let result = response.content.toJSON();
+                                let result = res.content.toJSON();
                                 let tags = result.outputs[0].data.concepts.map( mc => mc.name + '|' + mc.value );
                                 let ingredients = [];
                                 //console.log(tags);
