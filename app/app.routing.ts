@@ -6,7 +6,7 @@ import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { HomeComponent } from "./home/home.component";
 import { RecipeSearchComponent } from "./recipe-search/recipe-search.component";
-import { BluetoothComponent } from "./bluetooth/bluetooth.component";
+import { TemperatureComponent } from "./temperature/temperature.component";
 import { CameraComponent } from "./camera/camera.component";
 import { StoreComponent } from "./store/store.component";
 
@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: "", component: HomeComponent, pathMatch: "full" },
     { path: "recipes/:category", component: RecipesComponent },
     { path: "search", component: RecipeSearchComponent },
-    { path: "bluetooth", component: BluetoothComponent },
+    { path: "temperature", component: TemperatureComponent },
     { path: "camera", component: CameraComponent },
     { path: "store", component: StoreComponent },
     { path: "recipe/:id", component: RecipeDetailComponent },

@@ -1,35 +1,33 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
-import { MLService } from "../services";
+import { PhotonService, AuthService } from "../services";
+import { Http, Response, Headers } from '@angular/http';
 
 @Component({
     selector: "temperature",
     moduleId: module.id,
     templateUrl: "./temperature.component.html",
 })
-export class BluetoothComponent implements OnInit {
+export class TemperatureComponent implements OnInit {
    
-    temperature: number;
+    temperature: number = 0;
     recommendation: string = "";
     gradient: string = "";
+
 
     //if warm: gradient is red,redorange,orange
     //if warm: recommendation is 'It seems pretty warm in here! Here are some recipes that might be refreshing'
 
-    constructor(private mlService: MLService,
-                private router: Router) 
-                { 
-                    
-                }
+    constructor(private photonService: PhotonService,
+                private router: Router,
+                private http: Http) 
+                {}
 
     ngOnInit(): void {
-        //connect to Particle
-        mlService.getTemperature(){
-            
-        }
+        
     }
-
+   
     
     showInfo() {
         alert("Connect to your local hardware device to read your room temperature and get recommended recipes.")

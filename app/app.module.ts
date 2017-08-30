@@ -1,17 +1,15 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
-import { RecipesService } from "./services/recipes.service";
-import { FilesService } from "./services/files.service";
-import { AuthService } from "./services/auth.service";
-import { MLService } from "./services/ml.service";
+import { RecipesService, FilesService, AuthService, MLService, PhotonService } from "./services";
 
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { HomeComponent } from "./home/home.component";
-import { BluetoothComponent } from "./bluetooth/bluetooth.component";
+import { TemperatureComponent } from "./temperature/temperature.component";
 import { CameraComponent } from "./camera/camera.component";
 import { StoreComponent } from "./store/store.component";
 import { RecipeSearchComponent } from "./recipe-search/recipe-search.component";
@@ -41,6 +39,7 @@ firebase.init({
     ],
     imports: [
         NativeScriptModule,
+        NativeScriptHttpModule,
         AppRoutingModule,
         TNSFontIconModule.forRoot({
             'fa': 'fonts/font-awesome.css',
@@ -50,7 +49,7 @@ firebase.init({
     declarations: [
         AppComponent,
         HomeComponent,
-        BluetoothComponent,
+        TemperatureComponent,
         CameraComponent,
         RecipesComponent,
         RecipeSearchComponent,
@@ -61,7 +60,8 @@ firebase.init({
         RecipesService,
         FilesService,
         AuthService,
-        MLService   
+        MLService,
+        PhotonService  
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -1,0 +1,11 @@
+{
+    "eventName": "Temperatures",
+    "url": "https://quicknoms-91e39.firebaseio.com/Temperatures/data.json",
+    "requestType": "POST",
+    "query": {
+    	"auth":"57PDHtLGfHDGqO63Psdx59CWyrLmncxBPWVEKfOX"
+    },
+    "body": "{ \"temperature\": {{temperature}},\"date\": \"{{PARTICLE_PUBLISHED_AT}}\",\"device_id\": \"{{PARTICLE_DEVICE_ID}}\" }",
+    "mydevices": true,
+    "noDefaults": true
+}

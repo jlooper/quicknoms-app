@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 const http = require("http");
 import { AuthService } from "../services/auth.service";
 
+@Injectable()
 export class MLService {
     public queryGoogleVisionAPI(imageAsBase64: string):Promise<any>{
         return http.request({
@@ -53,7 +54,4 @@ export class MLService {
         }
       )}
 
-    public getTemperature(){
-        //photon API call
-    }
-    }
+}
