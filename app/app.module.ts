@@ -4,7 +4,7 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
-import { RecipesService, FilesService, AuthService, MLService, PhotonService } from "./services";
+import { RecipesService, FilesService, AuthService, MLService } from "./services";
 
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
@@ -60,8 +60,7 @@ firebase.init({
         RecipesService,
         FilesService,
         AuthService,
-        MLService,
-        PhotonService  
+        MLService 
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -7,4 +7,5 @@ export class AuthService {
   static googleKey = "";
   static algoliaAppId = "";
   static algoliaKey = "";  
+  static deviceId = "";
 }

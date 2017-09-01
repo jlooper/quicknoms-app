@@ -15,6 +15,7 @@ export class RecipesService {
 
   recipes: BehaviorSubject<Array<RecipeModel>> = new BehaviorSubject([]);
   private _allRecipes: Array<RecipeModel> = [];
+  private _temperatures: Array<any> = [];
   loader = new LoadingIndicator();
 
   getRecipes(category: string): Observable<any> {
@@ -47,6 +48,22 @@ export class RecipesService {
     }).share();
   }
 
+  getTemperatures(deviceId: string): Observable<any>{
+    return new Observable((observer: any) => {
+      let path = 'Temperatures/data';
+      this.loader.show({ message: 'Getting temperatures...' });
+
+      let onValueEvent = (snapshot: any) => {
+        this.ngZone.run(() => {
+          let results = this.handleTemperatureSnapshot(snapshot.value, deviceId);
+          observer.next(results);
+        });
+      };
+      firebase.addValueEventListener(onValueEvent, `/${path}`);
+    }).share();
+
+  }
+
   handleSnapshot(data: any, category: string) {
     //empty array, then refill and filter
     this._allRecipes = [];
@@ -70,6 +87,22 @@ export class RecipesService {
       this.loader.hide();
     }
     return this._allRecipes;
+  }
+
+  handleTemperatureSnapshot(data: any, deviceId: string) {
+    //empty array, then refill and filter
+    this._temperatures = [];
+    if (data) {
+      console.log(JSON.stringify(data))
+      for (let id in data) {
+        let result = (<any>Object).assign({ id: id }, data[id]);        
+        if (result.device_id == deviceId) {
+          this._temperatures.push(result);
+          this.loader.hide();
+        }
+      }
+    }
+    return this._temperatures;
   }
 
   getMessage(): Observable<any> {
