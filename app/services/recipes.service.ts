@@ -33,6 +33,21 @@ export class RecipesService {
     }).share();
   }
 
+  getCalibratedRecipes(temperature: string): Observable<any> {
+    return new Observable((observer: any) => {
+      let path = 'Recipes';
+      this.loader.show({ message: 'Getting recipes...' });
+
+      let onValueEvent = (snapshot: any) => {
+        this.ngZone.run(() => {
+          let results = this.handleCalibratedSnapshot(snapshot.value, temperature);
+          observer.next(results);
+        });
+      };
+      firebase.addValueEventListener(onValueEvent, `/${path}`);
+    }).share();
+  }
+
   getRecipe(id: string): Observable<any> {
     return new Observable((observer: any) => {
       let path = 'Recipes/'+id+'';
@@ -53,13 +68,13 @@ export class RecipesService {
       let path = 'Temperatures/data';
       this.loader.show({ message: 'Getting temperatures...' });
 
-      let onValueEvent = (snapshot: any) => {
+      let onChildEvent = (snapshot: any) => {
         this.ngZone.run(() => {
           let results = this.handleTemperatureSnapshot(snapshot.value, deviceId);
           observer.next(results);
         });
       };
-      firebase.addValueEventListener(onValueEvent, `/${path}`);
+      firebase.addChildEventListener(onChildEvent, `/${path}`);
     }).share();
 
   }
@@ -79,6 +94,21 @@ export class RecipesService {
     return this._allRecipes;
   }
 
+  handleCalibratedSnapshot(data: any, temperature: string) {
+    //empty array, then refill and filter
+    this._allRecipes = [];
+    if (data) {
+      for (let id in data) {
+        let result = (<any>Object).assign({ id: id }, data[id]);
+        if (result.Approved && result.Temperature == temperature) {
+          this._allRecipes.push(result);
+        }
+      }
+      this.publishUpdates();
+    }
+    return this._allRecipes;
+  }
+
   handleSingleSnapshot(data: any) {
     //empty array, then refill and filter
     this._allRecipes = [];
@@ -90,17 +120,13 @@ export class RecipesService {
   }
 
   handleTemperatureSnapshot(data: any, deviceId: string) {
-    //empty array, then refill and filter
-    this._temperatures = [];
+    
     if (data) {
-      console.log(JSON.stringify(data))
-      for (let id in data) {
-        let result = (<any>Object).assign({ id: id }, data[id]);        
-        if (result.device_id == deviceId) {
-          this._temperatures.push(result);
-          this.loader.hide();
-        }
-      }
+      let result = data;
+      //console.log(JSON.stringify(result))
+      this._temperatures = [];
+      this._temperatures.push(result);
+      this.loader.hide();
     }
     return this._temperatures;
   }
