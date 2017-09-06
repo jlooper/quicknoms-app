@@ -60,12 +60,11 @@ export class CameraComponent implements OnInit {
             //send to clarif.ai for analysis //png on ios
             const imageAsBase64 = image.toBase64String(enums.ImageFormat.png);
             try {
-                //this.loader.show({ message: 'Analyzing image...' });
+                this.loader.show({ message: 'Analyzing image...' });
                 this.mlService.queryClarifaiAPI(imageAsBase64)
                     .then(res => {
                             console.log('response!!!!');
-                            //this.loader.hide();
-                            console.log(res.content.toString());
+                            this.loader.hide();
                             try {
                                 let result = res.content.toJSON();
                                 let tags = result.outputs[0].data.concepts.map( mc => mc.name + '|' + mc.value );
