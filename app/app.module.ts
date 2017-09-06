@@ -20,6 +20,8 @@ import { registerElement } from "nativescript-angular/element-registry";
 registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
+import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui-pro/sidedrawer/angular";
+
 import firebase = require("nativescript-plugin-firebase");
 firebase.init({
   persist: true
@@ -39,6 +41,7 @@ firebase.init({
     ],
     imports: [
         NativeScriptModule,
+        NativeScriptUISideDrawerModule,
         NativeScriptHttpModule,
         AppRoutingModule,
         TNSFontIconModule.forRoot({

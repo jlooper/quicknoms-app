@@ -9,6 +9,7 @@ ActionBar {
     background-color: #FACC45;
     color: black;
     font-weight: bold;
+    padding: 10;
     font-size: 20;
     text-align: center;
     width: 100%;
@@ -17,6 +18,7 @@ ActionBar {
 .caption { 
     color: black;
     font-style: italic;
+    padding: 5;
 }
 
 .name {
@@ -129,42 +131,23 @@ ActionBar {
   font-family: Ionicons, ionicons;
 }
 
-/*fab*/
-.fab-button {
-    height: 40;
-    width: 40; 
-    margin: 10;
-    background-color: #650100; 
-    horizontal-align: right; 
-    vertical-align: top; 
+/*nav*/
+.nav-label {
+    font-size: 20;
+    color: #650100;
+    font-weight: bold;
+    padding: 20;
 }
-.speed-button {
-    height: 40;
-    width: 40;
-    margin: 10;
-    font-size: 15;
-    text-align: center;
-    color: #fff;
-    opacity: 0;
-    border-radius: 25;
-    horizontal-align: right;
-    vertical-align: top;
+
+.nav-layout{
+    text-align: left;
 }
-.btna {
-  background-color: red; 
+
+.hr{
+    height:1;
+    background-color:#650100;
+    width:100%
 }
-.btnb {
-  background-color: orangered; 
-}
-.btnc {
-  background-color: orange; 
-}
-.btnd {
-  background-color: yellow;
-}/*
-.btne {
-  background-color: #F13030; 
-}*/
 
 /*camera grid*/
 .cameraGrid {

@@ -1,24 +1,34 @@
 <ActionBar title="QuickNoms" class="action-bar">
-    <ActionItem (tap)="goToSearch()" ios.position="left">
-        <Button [text]="'fa-search' | fonticon" class="fa brown"></Button>
+    <ActionItem (tap)="openDrawer()" ios.position="left">
+        <Button [text]="'fa-bars' | fonticon" class="fa brown"></Button>
     </ActionItem>
 </ActionBar>
 
-<ScrollView>
+<RadSideDrawer (drawerOpening)="onDrawerOpening()" (drawerOpened)="onDrawerOpened()" (drawerClosing)="onDrawerClosing()"
+    (drawerClosed)="onDrawerClosed()" [transition]="sideDrawerTransition" tkExampleTitle tkToggleNavButton>
+   
+    <StackLayout tkDrawerContent class="orange">
+        <Image src="res://logo" width="100" height="100"></Image>    
+        <StackLayout class="nav-layout">
+            <Button (tap)="navigate('search')" text="{{'fa-search' | fonticon}} Search Recipes" class="fa nav-label"></Button>
+            <StackLayout class="hr"></StackLayout>
+            <Button (tap)="navigate('temperature')" text="{{'ion-thermometer' | fonticon}} Temperature Search" class="ion nav-label"></Button>
+            <StackLayout class="hr"></StackLayout>
+            <Button (tap)="navigate('camera')" text="{{'ion-pizza' | fonticon}} QuickNom or Not?" class="ion nav-label"></Button>
+            <StackLayout class="hr"></StackLayout>
+            <Button (tap)="navigate('store')" text="{{'fa-shopping-cart' | fonticon}} Ingredient Search" class="fa nav-label"></Button>
+            <StackLayout class="hr"></StackLayout>
+        </StackLayout>
+    </StackLayout>
+ 
+    
+    <ScrollView tkMainContent>
 
    <StackLayout>
        
         <GridLayout class="green" rows="*,*,auto">
             <Label row="0" class="banner" textWrap="true" [text]="message$ | async"></Label>           
             <Label row="1" class="title" textWrap="true" text="5 ingredients. 15 minutes. Minimal setup. Recipes for all!"></Label>
-            <Image row="2" src="res://logo" width="100" height="100"></Image>
-                    
-            <Button row="0" #btna (tap)="toggleNav('temperature')" [text]="'ion-thermometer' | fonticon" class="speed-button btna ion"></Button>
-            <Button row="0" #btnb (tap)="toggleNav('camera')" [text]="'ion-pizza' | fonticon" class="speed-button btnb ion"></Button>
-            <Button row="0" #btnc (tap)="toggleNav('store')" [text]="'fa-shopping-basket' | fonticon" class="speed-button btnc fa"></Button>
-     
-            <Fab row="0" #fab (tap)="toggleNav('Home')" icon="./images/icAddWhite.png" rippleColor="#f1f1f1" class="fab-button"></Fab>
-            
         </GridLayout>      
         <StackLayout>
             <GridLayout rows="*,*,*" columns="*,*">
@@ -54,3 +64,4 @@
     
     
 </ScrollView>
+</RadSideDrawer>
