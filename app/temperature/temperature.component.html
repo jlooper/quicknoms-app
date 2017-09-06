@@ -9,7 +9,7 @@
     <StackLayout class="orange">
 
         <ng-template #elseBlock>
-            <Label textWrap="true" class="banner" text="Match your local temperature to a recipe using an sensor"></Label>
+            <Label textWrap="true" class="banner" text="Match your local temperature to a recipe using a sensor"></Label>
         </ng-template>
 
         <Gradient *ngIf="temperature$ !== undefined; else elseBlock" class="gradientCard" direction="to bottom" [colors]="gradient">

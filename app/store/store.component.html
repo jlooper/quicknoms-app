@@ -6,6 +6,8 @@
 
     <Label class="banner" textWrap="true" text="Take a photo of an ingredient, and we'll match it with a recipe!"></Label>
 
+    <Label *ngIf="ingredient" class="banner-title" text="Searching: {{ingredient}}"></Label>
+
     <GridLayout cols="*" rows="*,*">
        
         <Button row="0" [text]="'fa-camera' | fonticon" class="fa btn cameraButton" (tap)="takePhoto()"></Button>

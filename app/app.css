@@ -15,6 +15,15 @@ ActionBar {
     width: 100%;
 }
 
+.banner-title{
+    color: black;
+    font-weight: bold;
+    padding: 10;
+    font-size: 20;
+    text-align: center;
+    width: 100%;
+}
+
 .caption { 
     color: black;
     font-style: italic;
@@ -163,4 +172,7 @@ ActionBar {
     color: white;
     font-size: 50;
     padding: 10;
+    margin: 10;
+    border-radius: 5;
+    background-color: #6F9818;
 }

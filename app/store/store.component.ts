@@ -72,7 +72,6 @@ export class StoreComponent implements OnInit {
                         let result = res.content.toJSON();
                                 this.ingredient = result.responses[0].labelAnnotations.map( mc => mc.description );                                                               
                                 this.ngZone.run(() => {
-                                    this.loader.hide();
                                     this.searchRecipes(this.ingredient)
                                 })
                         });
