@@ -12,28 +12,41 @@ import { Http, Response, Headers } from '@angular/http';
 export class TemperatureComponent implements OnInit {    
   
     public temperature$: Observable<any>;
-    public recipes$: Observable<any>;
+    public calibratedrecipes$: Observable<any>;
     recommendation: string = "";
     gradient: string = "";
-   
+    temp: number = 0;
+    initialSearch: Boolean = false;
+    
     constructor(private recipesService: RecipesService, 
         private router: Router){}
 
     ngOnInit(): void {
         this.recipesService.getTemperatures(AuthService.deviceId).subscribe((temperature) => {
-            console.log(JSON.stringify(temperature))
+            
             this.temperature$ = temperature[0].temperature;
-            if (Number(this.temperature$) > 70) {
-                this.gradient = "red,redorange,orange";
-                this.recommendation = "It seems pretty warm in here! Here are some recipes that might be refreshing";
-                this.recipes$ = <any>this.recipesService.getCalibratedRecipes("hot");
-            }  
-            else {
-                this.gradient = "skyblue,lightskyblue,white";
-                this.recommendation = "It seems pretty cool in here! Here are some recipes that might be warm and toasty";
-                this.recipes$ = <any>this.recipesService.getCalibratedRecipes("cold");
-            }           
+            this.temp = Number(this.temperature$);
+
+            if (!this.initialSearch) {
+                this.findRecipes(this.temp) 
+                this.initialSearch = true;
+            }                                
         })
+    }
+
+    findRecipes(temp){
+        
+        if (temp > 70) {
+            this.gradient = "red,redorange,orange";
+            this.recommendation = "It seems pretty warm in here! Here are some recipes that might be refreshing";                
+            this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("hot");
+        } 
+        else {
+            this.gradient = "lightblue,gray,white";
+            this.recommendation = "It seems pretty cool in here! Here are some recipes that might be warm and toasty";                           
+            this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("cold");     
+        } 
+              
     }
 
     goToRecipe(id: string){

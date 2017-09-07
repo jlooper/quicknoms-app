@@ -15,16 +15,17 @@
         <Gradient *ngIf="temperature$ !== undefined; else elseBlock" class="gradientCard" direction="to bottom" [colors]="gradient">
             <Label class="temp" [text]="temperature$ + '°'"></Label>
             <Label [text]="recommendation" textWrap="true"></Label>
-
+           
             <WrapLayout horizontalAlignment="center">
-                <StackLayout class="card" width="45%" *ngFor="let recipe of (recipes$ | async)">
+                <StackLayout class="card" width="45%" *ngFor="let recipe of (calibratedrecipes$ | async)">
                     <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
                         <Image stretch="aspectFill" [src]="recipe.Image" height="75%" width="100%"></Image>
                         <Label class="name" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>
                     </StackLayout>
                 </StackLayout>
             </WrapLayout>
-        </Gradient>
+        
+        </Gradient>       
 
     </StackLayout>
 
