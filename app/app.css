@@ -146,6 +146,7 @@ ActionBar {
     color: #650100;
     font-weight: bold;
     padding: 20;
+    margin: 10;
 }
 
 .nav-layout{
@@ -171,6 +172,16 @@ ActionBar {
 .cameraButton{
     color: white;
     font-size: 50;
+    padding: 10;
+    margin: 10;
+    border-radius: 5;
+    background-color: #6F9818;
+}
+
+/*temperature*/
+.tempButton {
+    color: white;
+    font-size: 20;
     padding: 10;
     margin: 10;
     border-radius: 5;

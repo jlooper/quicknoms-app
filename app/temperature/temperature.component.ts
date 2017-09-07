@@ -14,36 +14,29 @@ export class TemperatureComponent implements OnInit {
     public temperature$: Observable<any>;
     public calibratedrecipes$: Observable<any>;
     recommendation: string = "";
-    gradient: string = "";
-    temp: number = 0;
-    initialSearch: Boolean = false;
     
     constructor(private recipesService: RecipesService, 
         private router: Router){}
 
     ngOnInit(): void {
-        this.recipesService.getTemperatures(AuthService.deviceId).subscribe((temperature) => {
-            
-            this.temperature$ = temperature[0].temperature;
-            this.temp = Number(this.temperature$);
-
-            if (!this.initialSearch) {
-                this.findRecipes(this.temp) 
-                this.initialSearch = true;
-            }                                
+        this.recipesService.getTemperatures(AuthService.deviceId).subscribe((temperature) => {           
+            this.temperature$ = temperature[0].temperature;  
+            if (Number(this.temperature$) > 70) {
+                this.recommendation = "It seems pretty warm in here! I'd recommend some recipes that might be refreshing";                
+            } 
+            else {
+                this.recommendation = "It seems pretty cool in here! I'd recommend some recipes that might be warm and toasty";                           
+            }                                          
         })
     }
 
     findRecipes(temp){
         
+        console.log(temp)
         if (temp > 70) {
-            //this.gradient = "red,redorange,orange";
-            this.recommendation = "It seems pretty warm in here! Here are some recipes that might be refreshing";                
             this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("hot");
         } 
         else {
-            //this.gradient = "lightblue,gray,white";
-            this.recommendation = "It seems pretty cool in here! Here are some recipes that might be warm and toasty";                           
             this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("cold");     
         } 
               
