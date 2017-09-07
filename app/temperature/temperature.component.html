@@ -13,11 +13,11 @@
         </ng-template>
 
         <StackLayout *ngIf="temperature$ !== undefined; else elseBlock">
-                <StackLayout  class="tempCard">
+                <Gradient class="tempCard" direction="to bottom" [colors]="gradient">
                     <Label class="temp" [text]="temperature$ + '°'"></Label>
                     <Label [text]="recommendation" textWrap="true"></Label>
                     <Button class="tempButton" text="Find me some recipes!" (tap)="findRecipes(temperature$)"></Button>
-                </StackLayout>
+                </Gradient>
                 <WrapLayout horizontalAlignment="center">
                     <StackLayout class="card" width="45%" *ngFor="let recipe of (calibratedrecipes$ | async)">
                         <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">

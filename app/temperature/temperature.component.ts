@@ -14,6 +14,8 @@ export class TemperatureComponent implements OnInit {
     public temperature$: Observable<any>;
     public calibratedrecipes$: Observable<any>;
     recommendation: string = "";
+    gradient: string = "";
+    
     
     constructor(private recipesService: RecipesService, 
         private router: Router){}
@@ -22,9 +24,11 @@ export class TemperatureComponent implements OnInit {
         this.recipesService.getTemperatures(AuthService.deviceId).subscribe((temperature) => {           
             this.temperature$ = temperature[0].temperature;  
             if (Number(this.temperature$) > 70) {
+                this.gradient = "#ff6207, #ff731c, #ffe949";
                 this.recommendation = "It seems pretty warm in here! I'd recommend some recipes that might be refreshing";                
             } 
             else {
+                this.gradient = "#05abe0, #53cbf1, #87e0fd";
                 this.recommendation = "It seems pretty cool in here! I'd recommend some recipes that might be warm and toasty";                           
             }                                          
         })
@@ -32,7 +36,6 @@ export class TemperatureComponent implements OnInit {
 
     findRecipes(temp){
         
-        console.log(temp)
         if (temp > 70) {
             this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("hot");
         } 
