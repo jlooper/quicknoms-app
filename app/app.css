@@ -31,7 +31,7 @@ ActionBar {
 }
 
 .name {
-    margin:10
+    margin:10;
 }
 
 .title {
@@ -60,11 +60,10 @@ ActionBar {
 .card {
     margin: 5;
     color: white;
-    vertical-align:top;
     background-color: #650100;
     border-radius: 5;
     border-color: #8AC215;
-    height:300;
+    height:250;
 }
 
 .homecard {
@@ -83,9 +82,10 @@ ActionBar {
     background-color: white;
 }
 
-.gradientCard {
+.tempCard {
     color: #650100;
     vertical-align:top;
+    background-color: #8AC215;
     padding: 5;
     margin: 5; 
     text-align: center;

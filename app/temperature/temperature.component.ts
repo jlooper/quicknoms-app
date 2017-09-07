@@ -37,12 +37,12 @@ export class TemperatureComponent implements OnInit {
     findRecipes(temp){
         
         if (temp > 70) {
-            this.gradient = "red,redorange,orange";
+            //this.gradient = "red,redorange,orange";
             this.recommendation = "It seems pretty warm in here! Here are some recipes that might be refreshing";                
             this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("hot");
         } 
         else {
-            this.gradient = "lightblue,gray,white";
+            //this.gradient = "lightblue,gray,white";
             this.recommendation = "It seems pretty cool in here! Here are some recipes that might be warm and toasty";                           
             this.calibratedrecipes$ = <any>this.recipesService.getCalibratedRecipes("cold");     
         } 

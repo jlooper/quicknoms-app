@@ -12,7 +12,7 @@
             <Label textWrap="true" class="banner" text="Match your local temperature to a recipe using a sensor"></Label>
         </ng-template>
 
-        <Gradient *ngIf="temperature$ !== undefined; else elseBlock" class="gradientCard" direction="to bottom" [colors]="gradient">
+        <StackLayout *ngIf="temperature$ !== undefined; else elseBlock" class="tempCard">
             <Label class="temp" [text]="temperature$ + '°'"></Label>
             <Label [text]="recommendation" textWrap="true"></Label>
            
@@ -25,7 +25,7 @@
                 </StackLayout>
             </WrapLayout>
         
-        </Gradient>       
+        </StackLayout>       
 
     </StackLayout>
 
