@@ -139,13 +139,6 @@ ActionBar {
 }
 
 /*nav*/
-.nav-label {
-    font-size: 20;
-    color: #650100;
-    font-weight: bold;
-    padding: 20;
-    margin: 10;
-}
 
 .nav-layout{
     text-align: left;

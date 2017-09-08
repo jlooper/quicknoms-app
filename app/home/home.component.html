@@ -9,13 +9,13 @@
     <StackLayout tkDrawerContent class="orange">
         <Image src="res://logo" width="100" height="100"></Image>    
         <StackLayout class="nav-layout">
-            <Button class="brown" (tap)="navigate('search')" text="{{'fa-search' | fonticon}} Search Recipes" class="fa nav-label"></Button>
+            <Button (tap)="navigate('search')" text="{{'fa-search' | fonticon}} Search Recipes" class="fa nav-label brown"></Button>
             <StackLayout class="hr"></StackLayout>
-            <Button class="brown" (tap)="navigate('temperature')" text="{{'ion-thermometer' | fonticon}} Temperature Search" class="ion nav-label"></Button>
+            <Button (tap)="navigate('temperature')" text="{{'ion-thermometer' | fonticon}} Temperature Search" class="ion nav-label brown"></Button>
             <StackLayout class="hr"></StackLayout>
-            <Button class="brown" (tap)="navigate('camera')" text="{{'ion-pizza' | fonticon}} QuickNom or Not?" class="ion nav-label"></Button>
+            <Button (tap)="navigate('camera')" text="{{'ion-pizza' | fonticon}} QuickNom or Not?" class="ion nav-label brown"></Button>
             <StackLayout class="hr"></StackLayout>
-            <Button class="brown" (tap)="navigate('store')" text="{{'fa-shopping-cart' | fonticon}} Ingredient Search" class="fa nav-label"></Button>
+            <Button (tap)="navigate('store')" text="{{'fa-shopping-cart' | fonticon}} Ingredient Search" class="fa nav-label brown"></Button>
             <StackLayout class="hr"></StackLayout>
         </StackLayout>
     </StackLayout>

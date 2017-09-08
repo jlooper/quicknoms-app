@@ -2,3 +2,12 @@
     color: white;
     background-color: #650100;
 }
+
+.nav-label {
+    font-size: 15;
+    color: #650100;
+    background-color: orange;
+    font-weight: bold;
+    padding: 20;
+    margin: 10;
+}
