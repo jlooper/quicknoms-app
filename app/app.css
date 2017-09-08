@@ -1,3 +1,5 @@
+@import url("~/platform.css");
+
 ActionBar {
     background-color: #650100;
     color: white;
@@ -101,10 +103,6 @@ ActionBar {
 
 .orange {
     background-color: orange;
-}
-
-.brown {
-    background-color: #650100;
 }
 
 /*specifics*/

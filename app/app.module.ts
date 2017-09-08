@@ -14,12 +14,11 @@ import { CameraComponent } from "./camera/camera.component";
 import { StoreComponent } from "./store/store.component";
 import { RecipeSearchComponent } from "./recipe-search/recipe-search.component";
 
-import {TNSFontIconModule, TNSFontIconService, TNSFontIconPipe, TNSFontIconPurePipe} from 'nativescript-ngx-fonticon';
-//fab button
-import { registerElement } from "nativescript-angular/element-registry";
-registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
-registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
+//plugins
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("Gradient", () => require("nativescript-gradient").Gradient);
+import {TNSFontIconModule, TNSFontIconService, TNSFontIconPipe, TNSFontIconPurePipe} from 'nativescript-ngx-fonticon';
 import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui-pro/sidedrawer/angular";
 
 import firebase = require("nativescript-plugin-firebase");

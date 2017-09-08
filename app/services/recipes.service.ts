@@ -68,13 +68,13 @@ export class RecipesService {
       let path = 'Temperatures/data';
       this.loader.show({ message: 'Getting temperatures...' });
 
-      let onChildEvent = (snapshot: any) => {
+      let onValueEvent = (snapshot: any) => {
         this.ngZone.run(() => {
           let results = this.handleTemperatureSnapshot(snapshot.value, deviceId);
           observer.next(results);
         });
       };
-      firebase.addChildEventListener(onChildEvent, `/${path}`);
+      firebase.addValueEventListener(onValueEvent, `/${path}`);
     }).share();
 
   }
@@ -123,7 +123,7 @@ export class RecipesService {
     
     if (data) {
       let result = data;
-      //console.log(JSON.stringify(result))
+      console.log(JSON.stringify(result))
       this._temperatures = [];
       this._temperatures.push(result);
       this.loader.hide();
