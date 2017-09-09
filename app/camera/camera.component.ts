@@ -21,7 +21,8 @@ const enums = require("ui/enums");
 export class CameraComponent implements OnInit {
 
     public recipePic: ImageSource;
-    
+    allIngredients: Array<any> = [];
+
     constructor(private recipeService: RecipesService,
                 private router: Router,
                 private mlService: MLService) 
@@ -63,23 +64,26 @@ export class CameraComponent implements OnInit {
                 this.loader.show({ message: 'Analyzing image...' });
                 this.mlService.queryClarifaiAPI(imageAsBase64)
                     .then(res => {
-                            console.log('response!!!!');
                             this.loader.hide();
+                            
                             try {
                                 let result = res.content.toJSON();
-                                let tags = result.outputs[0].data.concepts.map( mc => mc.name + '|' + mc.value );
+                                this.allIngredients = result.outputs[0].data.concepts.map( mc => mc.name + ' : ' + mc.value );
                                 let ingredients = [];
-                                //console.log(tags);
-                                tags.forEach(function(entry) {
-                                    console.log(entry);
-                                    let prob = entry.split('|');
+                                
+                                this.allIngredients.forEach(function(entry) {
+                                    
+                                    let prob = entry.split(' : ');
                                     prob = prob[1];
-                                    let ingred = entry.split('|');
+                                    
+                                    let ingred = entry.split(' : ');
                                     if(prob > 0.899){
                                         ingredients.push(ingred[0])
-                                    }
-                                    console.log(ingredients.length)
+                                    }                                                                        
+                                
                                 });
+
+                                
                                 if (ingredients.length >= 5) {
                                     alert("Yes! This dish might qualify as a QuickNom! It contains "+ingredients)
                                 }
@@ -90,7 +94,7 @@ export class CameraComponent implements OnInit {
                             catch (e) {
                                 console.log('error parsing response: ' + e);
                             }
-                            //console.dir(result);
+                            
                         }, e => {
                             console.log("Error occurred " + e);
                         });

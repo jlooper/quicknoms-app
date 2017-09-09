@@ -129,6 +129,15 @@ ActionBar {
     animation-duration: 1s;
 }
 
+.tag {
+    border-width: 1;
+    border-radius: 2;
+    border-color: orange;
+    background-color: #FACC45;
+    padding: 2;
+    margin: 2;
+}
+
 /*fonticon*/
 .fa {
   font-family: FontAwesome, fontawesome-webfont;
