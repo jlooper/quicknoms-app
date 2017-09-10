@@ -1,7 +1,9 @@
 <ActionBar title="QuickNoms" class="action-bar">
-    <ActionItem (tap)="openDrawer()" ios.position="left">
-        <Button [text]="'fa-bars' | fonticon" class="fa brown"></Button>
-    </ActionItem>
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="openDrawer()"></NavigationButton>
+    
+        <ActionItem (tap)="openDrawer()" ios.position="left" android:visibility="collapsed">
+            <Button [text]="'fa-bars' | fonticon" class="fa blue"></Button>
+        </ActionItem>
 </ActionBar>
 
 <RadSideDrawer [transition]="sideDrawerTransition" tkExampleTitle tkToggleNavButton>
