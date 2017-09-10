@@ -24,6 +24,7 @@
     "@angular/router": "~4.1.0",
     "nativescript-algolia": "0.0.1",
     "nativescript-angular": "3.1.1",
+    "nativescript-auto-fit-text": "^1.0.0",
     "nativescript-camera": "^3.0.1",
     "nativescript-gradient": "^2.0.0",
     "nativescript-loading-indicator": "^2.3.2",

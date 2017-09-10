@@ -9,13 +9,8 @@
     
     <Button [text]="'fa-camera' | fonticon" class="fa btn cameraButton" (tap)="takePhoto()"></Button>
 
-    <!--<Label *ngIf="allIngredients" textWrap="true" class="banner-title" text="{{allIngredients}}"></Label>-->
-    
-             
-    <!--<Image *ngIf="recipePic" width="400" height="400" [src]="recipePic"></Image>-->
-
-    <WrapLayout orientation="horizontal">
-        <StackLayout width="50%" *ngFor="let ingredient of allIngredients">
+    <WrapLayout horizontalAlignment="center" orientation="horizontal">
+        <StackLayout width="48%" *ngFor="let ingredient of allIngredients">
             <Label class="tag" [text]="ingredient"></Label>
         </StackLayout>
     </WrapLayout>

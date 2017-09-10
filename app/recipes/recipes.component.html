@@ -4,10 +4,8 @@
 <ScrollView class="green">
     <WrapLayout horizontalAlignment="center">      
         <StackLayout class="card" width="45%" *ngFor="let recipe of (recipes$ | async)">
-            <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
-                <Image stretch="aspectFill"  [src]="recipe.Image" height="85%" width="100%"></Image>            
-                <Label class="name" horizontalAlignment="center" textWrap="false" [text]="recipe.Name"></Label>
-            </StackLayout>
+                <Image height="80%" stretch="aspectFill" [src]="recipe.Image" (tap)="goToRecipe(recipe.id)"></Image> 
+                <Label height="20%" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>                
         </StackLayout>           
     </WrapLayout> 
 </ScrollView>

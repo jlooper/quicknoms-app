@@ -13,19 +13,19 @@
         </ng-template>
 
         <StackLayout *ngIf="temperature$ !== undefined; else elseBlock">
+                
                 <Gradient class="tempCard" direction="to bottom" [colors]="gradient">
                     <Label class="temp" [text]="temperature$ + '°'"></Label>
                     <Label [text]="recommendation" textWrap="true"></Label>
                     <Button class="tempButton" text="Find me some recipes!" (tap)="findRecipes(temperature$)"></Button>
                 </Gradient>
-                <WrapLayout horizontalAlignment="center">
+                
+                <WrapLayout horizontalAlignment="center">      
                     <StackLayout class="card" width="45%" *ngFor="let recipe of (calibratedrecipes$ | async)">
-                        <StackLayout rows="auto,*" (tap)="goToRecipe(recipe.id)">
-                            <Image stretch="aspectFill" [src]="recipe.Image" height="85%" width="100%"></Image>
-                            <Label class="name" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </WrapLayout>
+                        <Image height="80%" stretch="aspectFill" [src]="recipe.Image" (tap)="goToRecipe(recipe.id)"></Image> 
+                        <Label height="20%" horizontalAlignment="center" textWrap="true" [text]="recipe.Name"></Label>                
+                    </StackLayout>           
+                </WrapLayout> 
                         
         </StackLayout>       
 

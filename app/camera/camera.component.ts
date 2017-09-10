@@ -85,7 +85,7 @@ export class CameraComponent implements OnInit {
 
                                 
                                 if (ingredients.length >= 5) {
-                                    alert("Yes! This dish might qualify as a QuickNom! It contains "+ingredients)
+                                    alert("Yes! This dish might qualify as a QuickNom!")
                                 }
                                 else {
                                     alert("Hmm. This recipe doesn't have the qualifications of a QuickNom. Try again!")
