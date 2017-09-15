@@ -13,11 +13,11 @@ This app has several special features:
 - Search, powered by Algolia
 - Text-to-Speech - read me a recipe
 - Announcement marquee at the top - announcing new recipes, powered by Firebase's Remote Config module
-- A hardware module (in development) - get local temperature from a connected device and get corresponding recipe recommendations
-- Two machine learning modules, accessible from the FAB button dropdown on the top right of the home screen: 
+- A hardware module accessible from the side drawer, connected to a Particle Photon - get local temperature from a connected device and get corresponding recipe recommendations
+- Two machine learning modules, also accessible from the side drawer: 
 
     - "QuickNom or Not" - take a photo of a plate of food and, using Clarif.ai's 'food' model, determine whether the dish qualifies as a QuickNom (does it have its ingredients listed clearly)
-    - "Store Module" - take a photo of an ingredient and find matching recipes, if available
+    - "What can I do with an avocado?" - take a photo of an ingredient and find matching recipes, if available
 
 I hope you enjoy QuickNoms!
 
