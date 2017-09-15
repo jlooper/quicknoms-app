@@ -107,5 +107,9 @@ export class StoreComponent implements OnInit {
            })           
 
         }
+
+        goToRecipe(id: string){
+            this.router.navigate(["/recipe", id]);
+        }
        
     }

@@ -83,8 +83,8 @@ export class CameraComponent implements OnInit {
                                 
                                 });
 
-                                
-                                if (ingredients.length >= 5) {
+                                //there should have between four and eight discernable ingredients                     
+                                if (ingredients.length >= 4 && ingredients.length <= 8) {
                                     alert("Yes! This dish might qualify as a QuickNom!")
                                 }
                                 else {
