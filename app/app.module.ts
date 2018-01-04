@@ -19,7 +19,7 @@ import { RecipeSearchComponent } from "./recipe-search/recipe-search.component";
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 import {TNSFontIconModule, TNSFontIconService, TNSFontIconPipe, TNSFontIconPurePipe} from 'nativescript-ngx-fonticon';
-import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui-pro/sidedrawer/angular";
+import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 
 import firebase = require("nativescript-plugin-firebase");
 firebase.init({

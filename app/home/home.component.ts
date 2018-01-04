@@ -5,8 +5,8 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { RecipesService } from "../services/recipes.service";
 import { Page } from "ui/page";
-import { RadSideDrawerComponent, SideDrawerType } from "nativescript-telerik-ui-pro/sidedrawer/angular";
-import { RadSideDrawer } from 'nativescript-telerik-ui-pro/sidedrawer';
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 
 @Component({
     selector: "home",
