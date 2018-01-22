@@ -15,23 +15,46 @@ export class TemperatureComponent implements OnInit {
     public calibratedrecipes$: Observable<any>;
     recommendation: string = "";
     gradient: string = "";
+    coolRecommendation: string = "It seems pretty cool in here! I'd recommend some recipes that might be warm and toasty";
+    hotRecommendation: string = "It seems pretty warm in here! I'd recommend some recipes that might be refreshing";
+    coolGradient: string = "#05abe0, #53cbf1, #87e0fd";
+    hotGradient: string = "#ff6207, #ff731c, #ffe949";
     
+    //for demos, change to either F or C for Fahrenheit or Celsius/Centigrade
+    mode: string = "C";
     
     constructor(private recipesService: RecipesService, 
         private router: Router){}
 
     ngOnInit(): void {
         this.recipesService.getTemperatures(AuthService.deviceId).subscribe((temperature) => {           
-            this.temperature$ = temperature[0].temperature;  
+            this.temperature$ = temperature[0].temperature;            
+            this.getRecommendation(this.mode)                                                  
+        })
+    }
+
+    getRecommendation(mode){
+       
+        if (mode == 'F'){
             if (Number(this.temperature$) > 70) {
-                this.gradient = "#ff6207, #ff731c, #ffe949";
-                this.recommendation = "It seems pretty warm in here! I'd recommend some recipes that might be refreshing";                
+                this.gradient = this.hotGradient;
+                this.recommendation = this.hotRecommendation;            
             } 
             else {
-                this.gradient = "#05abe0, #53cbf1, #87e0fd";
-                this.recommendation = "It seems pretty cool in here! I'd recommend some recipes that might be warm and toasty";                           
-            }                                          
-        })
+                this.gradient = this.coolGradient;
+                this.recommendation = this.coolRecommendation;                           
+            }
+        }
+        else {
+            if (Number(this.temperature$) > 21) {
+                this.gradient = this.hotGradient;
+                this.recommendation = this.hotRecommendation; 
+            } 
+            else {
+                this.gradient = this.coolGradient;
+                this.recommendation = this.coolRecommendation;                     
+            }    
+        }    
     }
 
     findRecipes(temp){
