@@ -94,6 +94,10 @@ ActionBar {
     border-radius: 5;
 }
 
+.footer {
+    padding: 25
+}
+
 
 /* generics*/
 
@@ -103,6 +107,14 @@ ActionBar {
 
 .orange {
     background-color: orange;
+}
+
+.brown {
+    background-color: #650100;
+}
+
+.yellow {
+    background-color: #FACC45;
 }
 
 /*specifics*/

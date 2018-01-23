@@ -27,7 +27,7 @@
 
    <StackLayout>
        
-        <GridLayout class="green" rows="*,*,auto">
+        <GridLayout class="green" rows="*,*">
             <Label row="0" class="banner" textWrap="true" [text]="message$ | async"></Label>           
             <Label row="1" class="title" textWrap="true" text="5 ingredients. 15 minutes. Minimal setup. Recipes for all!"></Label>
         </GridLayout>      
@@ -60,8 +60,16 @@
                   </StackLayout>
             
             </GridLayout>
-        </StackLayout> 
+        </StackLayout>
+        
+        <GridLayout class="green footer">
+        </GridLayout> 
+        <GridLayout class="yellow footer">
+        </GridLayout> 
    </StackLayout>
+
+   
+
     
     
 </ScrollView>
