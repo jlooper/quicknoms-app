@@ -5,8 +5,8 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { RecipesService } from "../services/recipes.service";
 import { Page } from "ui/page";
-import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
-import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 
 @Component({
     selector: "home",
@@ -16,10 +16,8 @@ import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 export class HomeComponent implements AfterViewInit, OnInit {
   
   public message$: Observable<any>;
-
-
-    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
+  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+  private drawer: RadSideDrawer;
     
     constructor(private recipeService: RecipesService,
                 private router: Router,
