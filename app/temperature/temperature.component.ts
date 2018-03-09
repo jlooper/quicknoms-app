@@ -21,7 +21,7 @@ export class TemperatureComponent implements OnInit {
     hotGradient: string = "#ff6207, #ff731c, #ffe949";
     
     //for demos, change to either F or C for Fahrenheit or Celsius/Centigrade
-    mode: string = "C";
+    mode: string = "F";
     
     constructor(private recipesService: RecipesService, 
         private router: Router){}
